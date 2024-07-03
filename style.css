@@ -1,0 +1,46 @@
+/* Make the #destinations_container content to display horizontally and wrap */
+.submit_btn {
+  width: 100%;
+}
+#destinations_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-self: center;
+  width: 80%; /* Adjust width to leave space for the form */
+  margin-top: 20px;
+}
+
+#title {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#top {
+  background-color: #e9ecef; /* Grey background color */
+  width: 100%; /* Make the background cover the entire width */
+  padding: 60px 0; /* Add padding only at the top and bottom */
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
+
+#top h1 {
+  color: #212529; /* Adjust text color to ensure contrast */
+}
+
+.buttons_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  text-align: center; /* Center align content within this container */
+}
+
+p {
+  font-size: 19px; /* Adjust the font size as needed */
+  font-weight: 400;
+  font-family: system-ui 400;
+  color: rgb(33, 37, 41);
+  line-height: 24px;
+}
