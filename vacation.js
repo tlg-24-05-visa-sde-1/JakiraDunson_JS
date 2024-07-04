@@ -1,5 +1,3 @@
-document.querySelector("#title").innerHTML = "WishList is empty";
-
 document.addEventListener("DOMContentLoaded", function () {
   document
     .querySelector("#destinationForm")
@@ -13,6 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var location = event.target.elements["location"].value;
     var photo = event.target.elements["photo"].value;
     var description = event.target.elements["description"].value;
+
+    console.log("Form submitted with values: ", {
+      destination,
+      location,
+      photo,
+      description,
+    });
 
     resetFormValues(event.target);
 
@@ -42,6 +47,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function createDestinationCard(name, location, photoUrl, description) {
+    console.log("Creating destination card with values: ", {
+      name,
+      location,
+      photoUrl,
+      description,
+    });
+
     // Use the passed arguments to create a bootstrap card with destination details
     var card = document.createElement("div");
     card.setAttribute("class", "card");
