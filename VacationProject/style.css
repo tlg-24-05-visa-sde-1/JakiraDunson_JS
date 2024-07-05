@@ -2,6 +2,7 @@
 .submit_btn {
   width: 100%;
 }
+
 #destinations_container {
   display: flex;
   flex-wrap: wrap;
@@ -38,9 +39,24 @@
 }
 
 p {
-  font-size: 18px; /* Adjust the font size as needed */
-  font-weight: 400;
+  font-size: 20px; /* Adjust the font size as needed */
+  font-weight: 300;
   font-family: system-ui;
   color: rgb(33, 37, 41);
-  line-height: 24px;
+  line-height: 20px;
+}
+
+/* Ensure form labels and input fields are aligned to the left */
+#destinationForm .form-group label,
+#destinationForm .form-group input,
+#destinationForm .form-group textarea {
+  text-align: left; /* Align text to the left */
+}
+
+#destinationForm .form-group {
+  text-align: left; /* Ensure form groups are aligned to the left */
+}
+
+#destinationForm .form-control {
+  text-align: left; /* Ensure input and textarea elements are aligned to the left */
 }
