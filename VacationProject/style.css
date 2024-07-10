@@ -1,4 +1,3 @@
-/* Make the #destinations_container content to display horizontally and wrap */
 .submit_btn {
   width: 100%;
 }
@@ -8,7 +7,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-self: center;
-  width: 80%; /* Adjust width to leave space for the form */
+  width: 80%;
   margin-top: 20px;
 }
 
@@ -18,14 +17,14 @@
 }
 
 #top {
-  background-color: #e9ecef; /* Grey background color */
-  width: 100%; /* Make the background cover the entire width */
-  padding: 60px 0; /* Add padding only at the top and bottom */
-  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  background-color: #e9ecef;
+  width: 100%;
+  padding: 60px 0;
+  box-sizing: border-box;
 }
 
 #top h1 {
-  color: #212529; /* Adjust text color to ensure contrast */
+  color: #212529;
 }
 
 .buttons_container {
@@ -35,28 +34,27 @@
 }
 
 .container {
-  text-align: center; /* Center align content within this container */
+  text-align: center;
 }
 
 p {
-  font-size: 20px; /* Adjust the font size as needed */
+  font-size: 20px;
   font-weight: 300;
   font-family: system-ui;
   color: rgb(33, 37, 41);
   line-height: 20px;
 }
 
-/* Ensure form labels and input fields are aligned to the left */
 #destinationForm .form-group label,
 #destinationForm .form-group input,
 #destinationForm .form-group textarea {
-  text-align: left; /* Align text to the left */
+  text-align: left;
 }
 
 #destinationForm .form-group {
-  text-align: left; /* Ensure form groups are aligned to the left */
+  text-align: left;
 }
 
 #destinationForm .form-control {
-  text-align: left; /* Ensure input and textarea elements are aligned to the left */
+  text-align: left;
 }
