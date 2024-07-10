@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const wishListContainer = document.querySelector("#destinations_container");
   const title = document.querySelector("#title");
 
-  let listArray = JSON.parse(localStorage.getItem("destinations")) || [];
-
   form.addEventListener("submit", submittedForm);
+
+  let listArray = JSON.parse(localStorage.getItem("destinations")) || [];
 
   loadCardsFromLocalStorage();
 
@@ -23,7 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
       destination,
       location,
       photo,
-      description
+      description,
+      listArray.length
     );
 
     if (wishListContainer.children.length === 0) {
@@ -38,12 +39,13 @@ document.addEventListener("DOMContentLoaded", function () {
     form.reset(); // Reset form values
   }
 
-  function createDestinationCard(name, location, photoUrl, description) {
+  function createDestinationCard(name, location, photoUrl, description, index) {
     const card = document.createElement("div");
     card.setAttribute("class", "card");
     card.style.width = "15rem";
     card.style.height = "fit-content";
     card.style.margin = "20px";
+    card.setAttribute("data-index", index); // Add data-index attribute
 
     const img = document.createElement("img");
     img.setAttribute("class", "card-img-top");
@@ -99,24 +101,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function editDestination(event) {
-    const cardBody = event.target.parentElement.parentElement;
-    const card = cardBody.parentElement;
+    const card = event.target.closest(".card");
+    const index = card.getAttribute("data-index");
 
-    const name = cardBody.querySelector(".card-title").innerText;
-    const location = cardBody.querySelector(".card-subtitle").innerText;
-    const description = cardBody.querySelector(".card-text")
-      ? cardBody.querySelector(".card-text").innerText
+    const name = card.querySelector(".card-title").innerText;
+    const location = card.querySelector(".card-subtitle").innerText;
+    const description = card.querySelector(".card-text")
+      ? card.querySelector(".card-text").innerText
       : "";
     const photoUrl = card.querySelector(".card-img-top").getAttribute("src");
 
-    const destinationNameInput = document.querySelector(
-      'input[name="destinationName"]'
-    );
-    const locationInput = document.querySelector('input[name="location"]');
-    const photoInput = document.querySelector('input[name="photo"]');
-    const descriptionInput = document.querySelector(
-      'textarea[name="description"]'
-    );
+    const destinationNameInput = document.querySelector("#destinationName");
+    const locationInput = document.querySelector("#location");
+    const photoInput = document.querySelector("#photo");
+    const descriptionInput = document.querySelector("#description");
 
     if (
       destinationNameInput &&
@@ -130,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
       descriptionInput.value = description;
 
       card.remove();
-      removeCardFromLocalStorage(name, location, photoUrl, description);
+      removeCardFromLocalStorage(index);
     } else {
       console.error("Form elements not found.");
     }
@@ -138,16 +136,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function removeDestination(event) {
     const card = event.target.closest(".card");
+    const index = card.getAttribute("data-index");
 
-    const name = card.querySelector(".card-title").innerText;
-    const location = card.querySelector(".card-subtitle").innerText;
-    const description = card.querySelector(".card-text")
-      ? card.querySelector(".card-text").innerText
-      : "";
-    const photoUrl = card.querySelector(".card-img-top").getAttribute("src");
-
-    removeCardFromLocalStorage(name, location, photoUrl, description);
     card.remove();
+    removeCardFromLocalStorage(index);
 
     if (wishListContainer.children.length === 0) {
       title.innerHTML = "WishList is empty";
@@ -166,33 +158,23 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("destinations", JSON.stringify(listArray));
   }
 
-  function removeCardFromLocalStorage(
-    destination,
-    location,
-    photo,
-    description
-  ) {
-    listArray = listArray.filter(function (card) {
-      return !(
-        card.destination === destination &&
-        card.location === location &&
-        card.photo === photo &&
-        card.description === description
-      );
-    });
-
+  function removeCardFromLocalStorage(index) {
+    listArray.splice(index, 1);
     localStorage.setItem("destinations", JSON.stringify(listArray));
+    // Reload cards to update indices
+    loadCardsFromLocalStorage();
   }
 
   function loadCardsFromLocalStorage() {
     wishListContainer.innerHTML = "";
 
-    listArray.forEach(function (cardData) {
+    listArray.forEach(function (cardData, index) {
       const newCard = createDestinationCard(
         cardData.destination,
         cardData.location,
         cardData.photo,
-        cardData.description
+        cardData.description,
+        index
       );
       wishListContainer.appendChild(newCard);
     });
