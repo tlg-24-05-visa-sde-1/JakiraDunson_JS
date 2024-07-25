@@ -1,0 +1,31 @@
+* {
+  @import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 59%
+  );
+
+  /*color: black;*/
+  /*background: grey;*/
+  font-family: "Poiret One", cursive;
+}
+
+#map {
+  width: 100%;
+  height: 300px;
+  background-blend-mode: rgba(0, 0, 0, 0.1);
+  margin: 1em;
+}
+
+.weatherCards {
+  background: #ff80ab;
+  /*background-color: #FF80AB;*/
+  margin: 1em;
+}
+
+.navbar {
+  /*background: white;*/
+  font-weight: bold;
+}
